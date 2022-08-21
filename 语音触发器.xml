@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder Id="e5c6d447-4dc0-4938-89bd-23054ae0eb4d" Name="语音输入" Enabled="true">
+    <Folders />
+    <Triggers>
+      <Trigger Enabled="true" Name="语音输入（不要取消此项的勾选）" Id="e3f46284-6378-43c2-84a9-c4c1df95bf70" RegularExpression="^.{14} ChatLog 00:0038::发起语音输入请求喵">
+        <Actions>
+          <Action OrderNumber="1" JsonOperationType="GET" JsonEndpointExpression="http://127.0.0.1:1919/start_record" OBSEndPoint="" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="GenericJson">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="false" Name="1.写一个宏“/e 发起语音输入请求喵”" Id="ab7dc7b4-e0ea-463c-829d-99043823ac6c" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="false" Name="2.0.填写config，确保config和exe在同一目录，打开exe，挂在后台运行" Id="86f5d1da-c014-4664-844d-9d64833c1d59" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="false" Name="3.在游戏内切换到需要语音说话的频道" Id="472c278d-3b5a-4ae3-9a83-2864e73446dc" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="false" Name="4.按下宏，在默语频道看到“开始语音输入”后，立刻开始说话，即可进行语音输入" Id="0c0bba5d-43bc-400c-9e60-d061cf087c3a" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="false" Name="5.几秒不说话后，会自动停止语音输入" Id="089f8c59-5560-412e-aed3-04f69c0846c1" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="false" Name="2.1.在act加载鲶鱼精邮差，开启监听，把port填到config里" Id="b0dfea05-ff20-4488-a69a-51e12b72b2c8" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+    </Triggers>
+  </ExportedFolder>
+</TriggernometryExport>
