@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder Id="464bd0e9-0b34-424c-88d0-568d8d3c511e" Name="语音输入" Enabled="true">
+    <Folders />
+    <Triggers>
+      <Trigger Enabled="true" Name="语音输入（不要取消此项的勾选）" Id="6795ac7e-cb03-457d-b70c-a34f7b74acd7" RegularExpression="^.{14} ChatLog 00:0038::发起语音输入请求喵">
+        <Actions>
+          <Action OrderNumber="1" JsonOperationType="GET" JsonEndpointExpression="http://127.0.0.1:5000/start_record" OBSEndPoint="" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="GenericJson">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+      </Trigger>
+      <Trigger Enabled="false" Name="1.写一个宏“/e 发起语音输入请求喵”" Id="1c69ca4b-8b35-4547-a31f-6006d284c4f0" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+      </Trigger>
+      <Trigger Enabled="false" Name="2.0.填写config，确保config和exe在同一目录，打开exe，挂在后台运行" Id="4e8fda4e-251b-4403-a8f3-62f906574901" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+      </Trigger>
+      <Trigger Enabled="false" Name="3.在游戏内切换到需要语音说话的频道" Id="c0a1f102-4a5c-467b-882c-573bad14ff54" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+      </Trigger>
+      <Trigger Enabled="false" Name="4.按下宏，在默语频道看到“开始语音输入”后，立刻开始说话，即可进行语音输入" Id="2292c394-171e-4df3-bed7-e5b5f53c5b96" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+      </Trigger>
+      <Trigger Enabled="false" Name="5.几秒不说话后，会自动停止语音输入" Id="9c37fcf7-8cad-43da-9d29-4859cf31c899" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+      </Trigger>
+      <Trigger Enabled="false" Name="2.1.在act加载鲶鱼精邮差，开启监听，把port填到config里" Id="e05ec728-80bf-4390-9bd0-07de55650f2f" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+      </Trigger>
+      <Trigger Enabled="true" Name="限时输入" Id="b89bbf8f-4c3b-4e61-9815-8d7c917689aa" RegularExpression="^.{14} ChatLog 00:0038::发起限时语音输入请求喵(?&lt;time&gt;[1-9]\d*)">
+        <Actions>
+          <Action OrderNumber="1" JsonOperationType="GET" JsonEndpointExpression="http://127.0.0.1:5000/limit_record/${time}" OBSEndPoint="" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="GenericJson">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="false" Name="6.限时输入写宏&quot;/e 发起限时语音输入请求喵10&quot;，这是限时10秒输入" Id="02ad8719-bf6b-4cde-8409-b41b07acaf7f" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="false" Name="7.把10改成其他数字（后面不要加秒！）就能限时成其他数字" Id="7668d9d1-1a3a-4c7b-a352-a64dabef2277" RegularExpression="">
+        <Actions />
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+    </Triggers>
+  </ExportedFolder>
+</TriggernometryExport>
