@@ -13,19 +13,23 @@ import time
 import ssl
 from wsgiref.handlers import format_date_time
 from datetime import datetime
-from time import mktime
 import _thread as thread
 import pyaudio
 import requests
 import configparser
 from flask import Flask, request
+import time
 
 config = configparser.ConfigParser()  # 类实例化
-config.read('xivyy.ini')  # 读取配置文件
+# config.read('xivyy_real.ini', encoding='utf-8')  # 读取配置文件
+config.read('xivyy.ini',encoding='utf-8')  # 读取配置文件
 namazu_port = config.getint('PostNamazu', 'namazu_port')  # 读取配置文件中的namazu_port项
 APPID = config.get('XunFeiAPI', 'APPID')  # 读取配置文件中的APPID项
 APIKey = config.get('XunFeiAPI', 'APIKey')  # 读取配置文件中的APIKey项
 APISecret = config.get('XunFeiAPI', 'APISecret')  # 读取配置文件中的APISecret项
+active_time = config.getint('config', 'active_time')
+
+act_limit = 0
 
 
 def remove_punctuation(line, strip_all=True):
@@ -42,6 +46,17 @@ def remove_punctuation(line, strip_all=True):
 def send_message(port, message):
     message_send = message.encode("utf-8").decode("latin1")
     requests.post(url='http://127.0.0.1:' + str(port) + '/command', data=message_send)
+
+
+def if_stop(start):
+    # 如果当前时间 - 开始时间大于被设定的最大活跃时长，返回真
+    # print("当前时间为{0}，开始时间为{1}，时间差为{2}".format(time.time(), start, time.time() - start))
+    global act_limit
+    if act_limit:
+        if time.time() - start > act_limit:
+            act_limit = 0
+            return 1
+    return time.time() - start > active_time
 
 
 STATUS_FIRST_FRAME = 0  # 第一帧的标识
@@ -66,7 +81,7 @@ class Ws_Param(object):
         url = 'wss://ws-api.xfyun.cn/v2/iat'
         # 生成RFC1123格式的时间戳
         now = datetime.now()
-        date = format_date_time(mktime(now.timetuple()))
+        date = format_date_time(time.mktime(now.timetuple()))
 
         # 拼接字符串
         signature_origin = "host: " + "ws-api.xfyun.cn" + "\n"
@@ -156,7 +171,9 @@ def on_open(ws):
 
         print("- - - - - - - Start Recording ...- - - - - - - ")
         # 添加开始表示 ——start recording——
-        send_message(namazu_port, "/e 开始语音输入")
+        send_message(namazu_port,
+                     "/e 开始语音输入，默认最大输入时间为{0}秒，自定义最大输入时间为{1}秒".format(active_time, act_limit))
+        start_time = time.time()
         global text
         tip = "——start recording——"
         for i in range(0, int(RATE / CHUNK * 60)):
@@ -181,6 +198,8 @@ def on_open(ws):
                               "encoding": "raw"}}
                 try:
                     ws.send(json.dumps(d))
+                    if if_stop(start_time):
+                        ws.close()
                 except Exception as e:
                     print("websocket send error:", e)
                     break
@@ -192,8 +211,11 @@ def on_open(ws):
                               "audio": str(base64.b64encode(buf), 'utf-8'),
                               "encoding": "raw"}}
                 ws.send(json.dumps(d))
+                if if_stop(start_time):
+                    ws.close()
                 time.sleep(1)
                 break
+
         ws.close()
 
     thread.start_new_thread(run, ())
@@ -249,5 +271,14 @@ def start_record():
     return 'ok'
 
 
+@app.route('/limit_record/<int:secs>')
+def limit_record(secs):
+    global act_limit
+    act_limit = secs
+    job = Job()
+    job.start()
+    return 'ok'
+
+
 if __name__ == '__main__':
-    app.run(port=1919)
+    app.run(port=5000)
