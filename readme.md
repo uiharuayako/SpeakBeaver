@@ -1,5 +1,11 @@
 # SpeakBeaver 语音大河狸
 
+## 项目已迁移到Dalamud平台，请使用Dalamud以获得更好的语音输入体验
+
+Dalamud版[SpeakBeaver](https://github.com/uiharuayako/SpeakBeaverDalamud)  
+
+# ACT+鲶鱼精联动版 (仍可使用，如果因为版本更新触发器失效，请提issue)
+
 这是一个让FF14支持语音输入的程序。
 
 下载地址：[GitHub](https://github.com/uiharuayako/SpeakBeaver/releases/tag/v1.0.0)、[蓝奏云](https://wwc.lanzout.com/iLz6K09yfoeh)
