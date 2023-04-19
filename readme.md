@@ -8,7 +8,7 @@ Dalamud版[SpeakBeaver](https://github.com/uiharuayako/SpeakBeaverDalamud)
 
 这是一个让FF14支持语音输入的程序。
 
-下载地址：[GitHub](https://github.com/uiharuayako/SpeakBeaver/releases/tag/v1.0.0)、[蓝奏云](https://wwc.lanzout.com/iLz6K09yfoeh)
+下载地址：[GitHub](https://github.com/uiharuayako/SpeakBeaver/releases/latest)、[蓝奏云](https://wwhp.lanzout.com/iBCuw0prjpna)
 
 ## 配置方式
 
